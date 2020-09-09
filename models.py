@@ -20,12 +20,14 @@ class Net(nn.Module):
         
         k_height, k_width = weight.shape[2:]
 
+        # 1 input channel, 6 output channels, 3x3 square convolution kernel
+        self.conv1 = nn.Conv2d(1,6,3)
+        self.conv2 = nn.Conv2d(6,16,3)
+
 
         # As an example, you've been given a convolutional layer, which you may (but don't have to) change:
         # 1 input image channel (grayscale), 32 output channels/feature maps, 5x5 square convolution kernel
         self.conv1 = nn.Conv2d(1, 32, 5)
-        self.activ = nn.ELU()
-        self.pool = nn.MaxPool2d(2,2)
         self.drop = nn.Dropout2d(0.1)
         # Conv2
         self.conv2 = nn.Conv2d(32, 64, 3)
