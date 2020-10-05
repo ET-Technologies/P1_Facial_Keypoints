@@ -1,24 +1,21 @@
 ## TODO: define the convolutional neural network architecture
 
 import torch
-import torchvision
-import torchvision.transforms as transforms
-
+from torch.autograd import Variable
 import torch.nn as nn
 import torch.nn.functional as F
+# can use the below import should you choose to initialize the weights of your Net
+import torch.nn.init as I
+
 
 class Net(nn.Module):
 
-    def __init__(self):
+    def __init__(self, weight):
         super(Net, self).__init__()
 
         # 1 input channel, 6 output channels, 3x3 square convolution kernel
         self.conv1 = nn.Conv2d(1,6,3)
         self.conv2 = nn.Conv2d(6,16,3)
-        
-
-        
-
         
     def forward(self, x):
 
@@ -28,6 +25,3 @@ class Net(nn.Module):
         x = F.max_pool2d(F.relu(self.conv2(x)), 2)
 
         return x
-    
-net = Net()
-print(net)
